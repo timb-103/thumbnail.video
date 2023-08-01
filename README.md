@@ -10,6 +10,7 @@
 - 🛠 Build your own [video thumbnail](https://github.com/timb-103/video-thumbnails) API
 - 🚦 Rate limits using [nuxt-rate-limit](https://github.com/timb-103/nuxt-rate-limit)
 - ⚡ Super fast
+- ✨ Built with [Nuxt](https://nuxt.com) 3
 
 ## Install
 
