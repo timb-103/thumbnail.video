@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "nuxt-rate-limit": "1.0.4",
+    "simpledotcss": "^2.2.1",
     "video-thumbnails": "1.0.2"
   }
 }

@@ -1,81 +1,87 @@
 <template>
-  <div class="container">
+  <main>
     <!-- Header -->
-    <div class="header">
-      <h1>Video Thumbnail API</h1>
-      <p>
-        Get thumbnail images from any public video URL via API or browser. 100% free, no login
-        required &
-        <a href="https://github.com/timb-103/thumbnail.video" target="_blank">open source</a>.
-      </p>
-    </div>
+    <h1>Video Thumbnail API</h1>
+    <p>
+      Get thumbnail images from any public video URL via API or browser.
+      <mark>100% free</mark>, <em>no login required</em> &
+      <a href="https://github.com/timb-103/thumbnail.video" target="_blank">open source</a>.
+    </p>
 
     <!-- Form -->
-    <div class="form-container">
-      <form @submit.prevent="submit()" v-if="!imgSrc">
-        <!-- URL Input-->
-        <div>
-          <label>
-            <span>Public video URL</span>
-            <a href="" @click.prevent="tryDemo()">Try example</a>
-          </label>
-          <input type="text" v-model="url" placeholder="Eg. https://amazon.com/video.mp4" />
-        </div>
+    <form @submit.prevent="submit()" v-if="!imgSrc">
+      <!-- URL Input-->
+      <p>
+        <label>URL:</label>
+        <input
+          type="text"
+          v-model="url"
+          placeholder="Eg. https://amazon.com/video.mp4"
+          style="width: 350px"
+        />
+      </p>
 
-        <!-- Seconds Input -->
-        <div>
-          <label>Time to take thumbnail (seconds):</label>
-          <input type="number" v-model="seconds" placeholder="1" max="10" />
-        </div>
+      <!-- Seconds Input -->
+      <p>
+        <label>Time (seconds):</label>
+        <input type="number" v-model="seconds" placeholder="1" max="10" style="width: 150px" />
+      </p>
 
-        <p v-if="errors">{{ errors }}</p>
+      <!-- Errors -->
+      <p>
+        <code v-if="errors">{{ errors }}</code>
+      </p>
 
-        <!-- Submit -->
-        <button type="submit" :disabled="loading">Get Thumbnail</button>
-      </form>
+      <!-- Submit -->
+      <button type="submit" :disabled="loading">Get Thumbnail</button>
+      <p>
+        <small><a href="" @click.prevent="tryDemo()">or try example url</a></small>
+      </p>
+    </form>
 
+    <div v-if="imgSrc">
       <!-- Image -->
-      <div class="image-container" v-if="imgSrc">
+      <div class="image-container">
         <img :src="imgSrc" />
-        <a :href="imgSrc" download="thumbnail.png">Download</a>
+        <a :href="imgSrc" download="thumbnail.png" class="button">Download</a>
       </div>
 
       <!-- API URLs -->
-      <div class="" v-if="imgSrc && url">
-        <label>Get via API or view in browser:</label>
-        <code class="code-scroll">
-          thumbnail.video/api/get?url={{ url }}&seconds={{ seconds }}
-        </code>
-      </div>
+      <p>
+        <code>https://thumbnail.video/api/get?url={{ url }}&seconds={{ seconds }}</code>
+      </p>
 
-      <div v-if="imgSrc && url">
+      <!-- Clear Button-->
+      <div>
         <button @click="clear()" style="width: 100%">Clear</button>
       </div>
     </div>
 
-    <!-- API Info -->
-    <div class="info">
-      <div>
-        <p><strong>Use via API or browser</strong></p>
-        <code style="margin-top: 5px">
-          (GET) thumbnail.video/api/get?url={video_url}&seconds=${seconds}
-        </code>
-      </div>
+    <hr />
 
-      <div>
-        <p><strong>Test video URLs</strong></p>
-        <p>
-          Here's a list of public video URL's that you can test with:
-          <a href="https://gist.github.com/jsturgis/3b19447b304616f18657" target="_blank">
-            public video URL's
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
+    <!-- API Infos -->
+    <details>
+      <summary>Use via API or browser</summary>
+      <code style="margin-top: 5px">
+        (GET): thumbnail.video/api/get?url={video_url}&seconds=${seconds}
+      </code>
+    </details>
+
+    <details>
+      <summary>Test video URLs</summary>
+      <p>
+        Here's a list of public video URL's that you can test with:
+        <a href="https://gist.github.com/jsturgis/3b19447b304616f18657" target="_blank">
+          public video URL's
+        </a>
+      </p>
+    </details>
+  </main>
 </template>
 
 <script setup lang="ts">
+import 'simpledotcss/simple.min.css'
+
 const url = ref('')
 const seconds = ref(1)
 const loading = ref(false)
@@ -126,139 +132,20 @@ function clear() {
 </script>
 
 <style>
-body {
-  font-size: 16px;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Noto Color Emoji;
-  line-height: 1.7em;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  border-bottom: 1px dashed #000;
-  color: #000;
-  padding-bottom: 2px;
-  text-decoration: none;
-  transition: border 0.3s;
-}
-
-a:hover {
-  border-bottom: 1px solid #000;
-}
-
-.container {
-  margin: 60px auto;
-  max-width: 600px;
-}
-
-.header {
-  text-align: center;
-}
-
-.form-container {
-  border-radius: 8px;
-  box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
-  margin-top: 40px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-input {
-  background: #fff;
-  border: 1px solid #cecece;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 1.1em;
-  width: 100%;
-}
-
-button {
-  background: #000;
-  border: 1px solid #000;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  padding: 15px;
-}
-button:hover:not(:disabled) {
-  background: #fff;
-  color: #000;
-}
-button:disabled {
-  opacity: 0.4;
-}
-
-code {
-  background: #f6f6f6;
-  border: 1px solid #d1cece;
-  border-radius: 3px;
-  font-size: 14.5px;
-  padding: 0.3rem 0.375rem;
-  box-sizing: border-box;
-  overflow: auto;
-  white-space: nowrap;
-  width: 100%;
-  display: inline-block;
-}
-
-label {
-  font-weight: 600;
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-label > a {
-  font-size: 12px;
-  line-height: 24px;
-  padding: 0;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 40px;
+:root {
+  --accent: #000;
 }
 
 /** Image */
 .image-container {
   position: relative;
 }
-.image-container > img {
-  width: 100%;
-  display: block;
-}
 .image-container > a {
-  background: #fff;
-  border: 1px solid lightgrey;
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: #000;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  padding: 10px 15px;
-  text-decoration: none;
 }
-.image-container > a:hover {
-  background: #fafafa;
+.image-container > img {
+  width: 100%;
 }
 </style>
