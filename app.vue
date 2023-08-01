@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import 'simpledotcss/simple.min.css'
+// import 'simpledotcss/simple.min.css'
 
 const url = ref('')
 const seconds = ref(1)
@@ -132,10 +132,6 @@ function clear() {
 </script>
 
 <style>
-:root {
-  --accent: #000;
-}
-
 /** Image */
 .image-container {
   position: relative;

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ['nuxt-rate-limit'],
+  modules: ['nuxt-rate-limit', 'nuxt-simple-css'],
   nuxtRateLimit: {
     routes: {
       '/api/*': {
@@ -9,6 +9,9 @@ export default defineNuxtConfig({
         intervalSeconds: 60,
       },
     },
+  },
+  nuxtSimpleCSS: {
+    accent: '#000',
   },
 
   /**
