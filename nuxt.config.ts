@@ -37,19 +37,22 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content: 'Get thumbnail images from any public video URL via API or browser.',
+          content:
+            'Get thumbnail images from any public video URL via API or browser. 100% free, no login required.',
         },
         { property: 'title', content: 'Video Thumbnail API' },
         {
           property: 'description',
-          content: 'Get thumbnail images from any public video URL via API or browser.',
+          content:
+            'Get thumbnail images from any public video URL via API or browser. 100% free, no login required.',
         },
         { property: 'og:title', content: 'Video Thumbnail API' },
         { property: 'og:image', content: 'https://301redirect.to/images/og.jpg' },
         { property: 'og:image:alt', content: 'Video Thumbnail API' },
         {
           property: 'og:description',
-          content: 'Get thumbnail images from any public video URL via API or browser.',
+          content:
+            'Get thumbnail images from any public video URL via API or browser. 100% free, no login required.',
         },
         { property: 'og:url', content: 'https://301redirect.to/images/og.jpg' },
         { property: 'og:type', content: 'website' },
@@ -59,7 +62,8 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://thumbnail.video/images/og.jpg' },
         {
           name: 'twitter:description',
-          content: 'Get thumbnail images from any public video URL via API or browser.',
+          content:
+            'Get thumbnail images from any public video URL via API or browser. 100% free, no login required.',
         },
       ],
       script: [

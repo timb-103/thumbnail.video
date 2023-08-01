@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/node": "^18.17.1",
-    "nuxt": "^3.6.5"
+    "@types/node": "18.17.1",
+    "nuxt": "3.6.5"
   },
   "dependencies": {
-    "nuxt-rate-limit": "^1.0.4",
-    "video-thumbnails": "^1.0.2"
+    "nuxt-rate-limit": "1.0.4",
+    "video-thumbnails": "1.0.2"
   }
 }

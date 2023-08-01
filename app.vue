@@ -3,30 +3,36 @@
     <!-- Header -->
     <div class="header">
       <h1>Video Thumbnail API</h1>
-      <p>Get thumbnail images from any public video URL via API or browser.</p>
+      <p>
+        Get thumbnail images from any public video URL via API or browser. 100% free, no login
+        required &
+        <a href="https://github.com/timb-103/thumbnail.video" target="_blank">open source</a>.
+      </p>
     </div>
 
     <!-- Form -->
-    <form @submit.prevent="submit()">
-      <!-- URL Input-->
-      <div>
-        <label>
-          <span>Public video URL</span>
-          <a href="" @click.prevent="tryDemo()">Try example</a>
-        </label>
-        <input type="text" v-model="url" placeholder="Eg. https://amazon.com/video.mp4" />
-      </div>
+    <div class="form-container">
+      <form @submit.prevent="submit()" v-if="!imgSrc">
+        <!-- URL Input-->
+        <div>
+          <label>
+            <span>Public video URL</span>
+            <a href="" @click.prevent="tryDemo()">Try example</a>
+          </label>
+          <input type="text" v-model="url" placeholder="Eg. https://amazon.com/video.mp4" />
+        </div>
 
-      <!-- Seconds Input -->
-      <div>
-        <label>Time to take thumbnail (seconds):</label>
-        <input type="number" v-model="seconds" placeholder="1" max="10" />
-      </div>
+        <!-- Seconds Input -->
+        <div>
+          <label>Time to take thumbnail (seconds):</label>
+          <input type="number" v-model="seconds" placeholder="1" max="10" />
+        </div>
 
-      <p v-if="errors">{{ errors }}</p>
+        <p v-if="errors">{{ errors }}</p>
 
-      <!-- Submit -->
-      <button type="submit" :disabled="loading">Get Thumbnail</button>
+        <!-- Submit -->
+        <button type="submit" :disabled="loading">Get Thumbnail</button>
+      </form>
 
       <!-- Image -->
       <div class="image-container" v-if="imgSrc">
@@ -48,9 +54,9 @@
       </div>
 
       <div v-if="imgSrc && url">
-        <a href="" @click.prevent="clear()">Clear</a>
+        <button @click="clear()" style="width: 100%">Clear</button>
       </div>
-    </form>
+    </div>
 
     <!-- API Info -->
     <div class="info">
@@ -87,6 +93,9 @@ const demoURL = ref(
 useSeoMeta({ title: 'Video Thumbnail API' })
 
 function tryDemo() {
+  if (loading.value) {
+    return
+  }
   url.value = demoURL.value
   submit()
 }
@@ -134,6 +143,18 @@ p {
   margin: 0;
 }
 
+a {
+  border-bottom: 1px dashed #000;
+  color: #000;
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: border 0.3s;
+}
+
+a:hover {
+  border-bottom: 1px solid #000;
+}
+
 .container {
   margin: 60px auto;
   max-width: 600px;
@@ -143,11 +164,16 @@ p {
   text-align: center;
 }
 
-form {
+.form-container {
   border-radius: 8px;
   box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
   margin-top: 40px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -182,12 +208,11 @@ button:disabled {
 }
 
 code {
-  background: #ededed;
-  border: 1px solid #ededed;
+  background: #f6f6f6;
+  border: 1px solid #d1cece;
   border-radius: 3px;
   font-size: 14.5px;
-  padding: 0.2rem 0.375rem;
-  white-space: pre-line;
+  padding: 0.3rem 0.375rem;
   box-sizing: border-box;
   overflow: auto;
   white-space: nowrap;
@@ -200,6 +225,12 @@ label {
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+label > a {
+  font-size: 12px;
+  line-height: 24px;
+  padding: 0;
 }
 
 .info {
