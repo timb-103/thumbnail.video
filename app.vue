@@ -42,12 +42,7 @@
 
       <!-- API URLs -->
       <div class="" v-if="imgSrc && url">
-        <label>Get via API:</label>
-        <code class="code-scroll">
-          thumbnail.video/api/get?url={{ url }}&seconds={{ seconds }}
-        </code>
-
-        <label>View in browser:</label>
+        <label>Get via API or view in browser:</label>
         <code class="code-scroll">
           thumbnail.video/api/get?url={{ url }}&seconds={{ seconds }}
         </code>
