@@ -1,7 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-
+  modules: ['nuxt-rate-limit'],
+  nuxtRateLimit: {
+    routes: {
+      '/api/*': {
+        maxRequests: 20,
+        intervalSeconds: 60,
+      },
+    },
+  },
   app: {
     head: {
       charset: 'utf-8',
