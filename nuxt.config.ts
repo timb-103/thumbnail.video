@@ -10,6 +10,23 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  /**
+   * This is a fix to help Nitro include the executable in the output when building. If not used, it will work in dev
+   * but not after we do a build as the exe file is missing.
+   *
+   * Apparently it's not something they can fix, as asked about here:
+   * https://github.com/nuxt/nuxt/issues/20773
+   */
+  nitro: {
+    externals: {
+      traceInclude: [
+        'node_modules/@ffprobe-installer/win32-x64/ffprobe.exe',
+        'node_modules/@ffprobe-installer/linux-x64/ffprobe',
+      ],
+    },
+  },
+
   app: {
     head: {
       charset: 'utf-8',
