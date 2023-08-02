@@ -35,7 +35,7 @@
       <!-- Submit -->
       <button type="submit" :disabled="loading">Get Thumbnail</button>
       <div>
-        <small><a href="" @click.prevent="tryDemo()">or try example url</a></small>
+        <small><a href="/?example" @click.prevent="tryDemo()">or try example url</a></small>
       </div>
     </form>
 
