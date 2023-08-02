@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ['nuxt-rate-limit', 'nuxt-simple-css'],
+  modules: ['nuxt-rate-limit', 'nuxt-simple-css', '@nuxtjs/plausible'],
   nuxtRateLimit: {
     routes: {
       '/api/*': {
@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   },
   nuxtSimpleCSS: {
     accent: '#000',
+  },
+  plausible: {
+    domain: 'thumbnail.video',
   },
 
   /**
@@ -67,13 +70,6 @@ export default defineNuxtConfig({
           name: 'twitter:description',
           content:
             'Get thumbnail images from any public video URL via API or browser. 100% free, no login required.',
-        },
-      ],
-      script: [
-        {
-          src: 'https://plausible.io/js/plausible.js',
-          defer: true,
-          'data-domain': 'thumbnail.video',
         },
       ],
       link: [

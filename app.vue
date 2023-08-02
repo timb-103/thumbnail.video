@@ -106,10 +106,12 @@ async function submit() {
   imgSrc.value = ''
   errors.value = ''
 
+  // send plausible event
+  useTrackEvent('getThumbnail')
+
   try {
-    const response = await $fetch<Buffer>(
-      `/api/get?url=${encodeURIComponent(url.value)}&seconds=${seconds.value}`
-    )
+    const getURL = `/api/get?url=${encodeURIComponent(url.value)}&seconds=${seconds.value}`
+    const response = await $fetch<Buffer>(getURL)
     processImageBuffer(response)
   } catch (error: any) {
     console.log('Error getting thumbnail:', error)
