@@ -80,8 +80,6 @@
 </template>
 
 <script setup lang="ts">
-// import 'simpledotcss/simple.min.css'
-
 const url = ref('')
 const seconds = ref(1)
 const loading = ref(false)
