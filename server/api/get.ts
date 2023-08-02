@@ -11,6 +11,8 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  console.log(`Getting thumbnail at ${seconds}s from: ${url}`)
+
   try {
     // get the thumbnail using our video-thumbnails package
     const response = await getVideoThumbnail(String(url), Number(seconds) || 1)

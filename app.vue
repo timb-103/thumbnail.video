@@ -9,9 +9,9 @@
     </p>
 
     <!-- Form -->
-    <form @submit.prevent="submit()" v-if="!imgSrc">
+    <form @submit.prevent="submit()" v-if="!imgSrc" class="notice">
       <!-- URL Input-->
-      <p>
+      <div>
         <label>URL:</label>
         <input
           type="text"
@@ -19,27 +19,27 @@
           placeholder="Eg. https://amazon.com/video.mp4"
           style="width: 350px"
         />
-      </p>
+      </div>
 
       <!-- Seconds Input -->
-      <p>
+      <div>
         <label>Time (seconds):</label>
         <input type="number" v-model="seconds" placeholder="1" max="10" style="width: 150px" />
-      </p>
+      </div>
 
       <!-- Errors -->
-      <p>
+      <div>
         <code v-if="errors">{{ errors }}</code>
-      </p>
+      </div>
 
       <!-- Submit -->
       <button type="submit" :disabled="loading">Get Thumbnail</button>
-      <p>
+      <div>
         <small><a href="" @click.prevent="tryDemo()">or try example url</a></small>
-      </p>
+      </div>
     </form>
 
-    <div v-if="imgSrc">
+    <div v-if="imgSrc" class="notice">
       <!-- Image -->
       <div class="image-container">
         <img :src="imgSrc" />
@@ -47,9 +47,9 @@
       </div>
 
       <!-- API URLs -->
-      <p>
+      <div>
         <code>https://thumbnail.video/api/get?url={{ url }}&seconds={{ seconds }}</code>
-      </p>
+      </div>
 
       <!-- Clear Button-->
       <div>
